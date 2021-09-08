@@ -6,9 +6,11 @@ background.
 
 ### Features:
 
+- Login/Logout with your IServ account
+- plan changes, by week, day, filtered by course
+
 ### Coming soon:
 
-- Summarized representation plan only with entries from your class
 - Get all tasks
 - Read all your emails
 - Notifications
