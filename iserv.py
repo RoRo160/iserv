@@ -21,7 +21,8 @@ class IServ:
     paths = {
         "login": "/iserv/app/login",
         "logout": "/iserv/app/logout",
-        "plan": "/iserv/plan/show/raw/"
+        "plan": "/iserv/plan/show/raw/",
+        "tasks": "/iserv/exercise.csv"
     }
     messages = {
         "login_failed": "Anmeldung fehlgeschlagen!"
@@ -153,3 +154,47 @@ class IServ:
                     except IndexError:
                         pass
         return entries
+
+    def tasks(
+            self,
+            status: str = "current",
+            sort_by: str = "enddate",
+            sort_dir: str = "DESC"
+    ):
+        # TODO add option to filter tasks
+
+        r = self._s.get(
+            url=self.domain + IServ.paths["tasks"],
+            params={
+                "filter[status]": status,
+                "sort[by]": sort_by,
+                "sort[dir]": sort_dir
+            }
+        )
+
+        tasks = []
+
+        tasks_ = r.text.splitlines()
+        tasks_.pop(0)
+
+        # TODO use csv.reader to solve problems with quoted values and separators between those
+        # tasks_ = csv.reader(r.text, quotechar='"')
+
+        for t in tasks_:
+            task = t.split(";")
+            for i in range(len(task)):
+                if task[i].lower() == "ja":
+                    task[i] = True
+                elif task[i].lower() == "nein":
+                    task[i] = False
+
+            tasks.append({
+                "task": task[0],
+                "startdate": task[1],
+                "enddate": task[2],
+                "tags": task[3],
+                "done": task[4],
+                "review": task[5],
+            })
+
+        return tasks
