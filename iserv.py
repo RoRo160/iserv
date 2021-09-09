@@ -33,7 +33,7 @@ class IServ:
         self._csrf_token = None
         self._s = requests.Session()
 
-    def login(self, user, pw):
+    def login(self, user: str, pw: str):
         # send post request with session object
         r = self._s.post(
             url=self.domain + IServ.paths['login'],         # login path
@@ -118,9 +118,12 @@ class IServ:
             # get days
             day_temp = DAYS[i]
             # check day
-            if day_temp not in days:
+            if days == [""]:
+                pass
+            elif day_temp not in days:
                 # skip this table
                 continue
+
             entries[day_temp] = []
 
             # iterate through all rows of table and store data
