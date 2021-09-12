@@ -22,7 +22,8 @@ class IServ:
         "login": "/iserv/app/login",
         "logout": "/iserv/app/logout",
         "plan": "/iserv/plan/show/raw/",
-        "tasks": "/iserv/exercise.csv"
+        "tasks": "/iserv/exercise.csv",
+        "vc_load": "/iserv/videoconference/api/health"
     }
     messages = {
         "login_failed": "Anmeldung fehlgeschlagen!"
@@ -201,3 +202,10 @@ class IServ:
             })
 
         return tasks
+
+    def vc_load(self):
+        r = self._s.get(
+            url=self.domain + IServ.paths["vc_load"]
+        )
+
+        return r.json()
