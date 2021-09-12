@@ -4,6 +4,9 @@ import bs4
 from bs4 import *
 
 
+VERSION = (0, 2, 0, "beta")
+
+
 DAYS = [
     "monday",
     "tuesday",
