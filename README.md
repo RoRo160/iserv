@@ -1,6 +1,6 @@
 # IServ.py <img src="https://iserv.de/downloads/logo/IServ_Logo_klein_RGB_clean.svg" alt="" height="35" align="right">
 
-`Made by RoRo160` `v.0.01.0-beta`
+`Made by RoRo160` `v.0.02.0-beta`
 
 This module provides an easy way to communicate with your IServ account.
 I reverse-engineered parts of the internal IServ api and recreated some http requests your browser would do in the 
@@ -18,6 +18,7 @@ background.
 - Login/Logout with your IServ account
 - Plan changes, by week, day, filtered by course
 - Get all tasks
+- Videoconference server load/usage
 
 ### Coming soon:
 
@@ -94,8 +95,15 @@ tasks = iserv.tasks(
 # do something with task list
 ````
 
+#### Vc. server load:
+````python
+load = iserv.vc_load()
+
+# use returned dictionary
+````
+
 #
 
-> By RoRo160  `v.0.01.0-beta`
+> By RoRo160  `v.0.02.0-beta`
 > 
 > [My GitHub](https://github.com/RoRo160)
