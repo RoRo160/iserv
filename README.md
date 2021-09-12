@@ -18,6 +18,7 @@ background.
 - Login/Logout with your IServ account
 - Plan changes, by week, day, filtered by course
 - Get all tasks
+- Videoconference server load/usage
 
 ### Coming soon:
 
@@ -92,6 +93,13 @@ tasks = iserv.tasks(
 )
 
 # do something with task list
+````
+
+#### Vc. server load:
+````python
+load = iserv.vc_load()
+
+# use returned dictionary
 ````
 
 #
